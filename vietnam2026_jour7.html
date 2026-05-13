@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Vietnam 2026 · Carnet de voyage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --jade:#2d6a4f; --jade-l:#52b788; --gold:#c9a84c; --gold-l:#f0d080;
+      --cream:#fdf6ec; --ink:#1a1209; --muted:#6b5c45; --warm:#f4ede0;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;font-size:16px;line-height:1.7;overflow-x:hidden}
+
+    .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3rem 2rem;background:linear-gradient(175deg,rgba(45,106,79,.85) 0%,rgba(26,18,9,.7) 100%),url('https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?w=1400&q=80') center/cover no-repeat}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 110%,rgba(201,168,76,.22) 0%,transparent 70%);pointer-events:none}
+    .hero-flag{font-size:3.5rem;margin-bottom:1rem;animation:floatFlag 3s ease-in-out infinite}
+    @keyframes floatFlag{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .hero-eyebrow{font-weight:500;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-l);margin-bottom:.75rem;animation:fadeUp .8s .2s both}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,10vw,7rem);font-weight:600;line-height:1;color:#fff;animation:fadeUp .8s .35s both}
+    .hero-title em{font-style:italic;color:var(--gold-l)}
+    .hero-sub{font-size:1rem;color:rgba(255,255,255,.7);margin-top:1.25rem;letter-spacing:.05em;animation:fadeUp .8s .5s both}
+    .hero-authors{margin-top:2.5rem;display:flex;align-items:center;gap:1rem;animation:fadeUp .8s .65s both}
+    .hero-authors span{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:rgba(255,255,255,.9)}
+    .hero-authors .sep{width:40px;height:1px;background:var(--gold);opacity:.7}
+    .hero-scroll{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(255,255,255,.5);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;animation:fadeUp .8s .9s both}
+    .hero-scroll::after{content:'';display:block;width:1px;height:36px;background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);animation:scrollLine 1.8s ease-in-out infinite}
+    @keyframes scrollLine{0%,100%{opacity:.5}50%{opacity:1}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+    nav{position:sticky;top:0;z-index:100;background:rgba(253,246,236,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.2);padding:.75rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .nav-brand{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--jade);white-space:nowrap}
+    .nav-links{display:flex;gap:1.5rem;list-style:none;overflow-x:auto;scrollbar-width:none}
+    .nav-links::-webkit-scrollbar{display:none}
+    .nav-links a{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;white-space:nowrap;transition:color .2s}
+    .nav-links a:hover{color:var(--jade)}
+
+    .section{max-width:820px;margin:0 auto;padding:5rem 2rem}
+    .section-label{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+
+    .intro-card{background:var(--warm);border-left:3px solid var(--jade-l);border-radius:0 12px 12px 0;padding:2rem 2.5rem;margin-bottom:3rem}
+    .intro-card h2{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;color:var(--jade);margin-bottom:.75rem}
+    .intro-card p{color:var(--muted);font-size:.95rem}
+
+    .timeline{position:relative}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--jade-l),var(--gold),transparent);margin-left:18px}
+
+    .day-card{position:relative;padding-left:3.5rem;margin-bottom:4rem}
+    .day-dot{position:absolute;left:0;top:.25rem;width:38px;height:38px;background:var(--jade);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.65rem;font-weight:500;letter-spacing:.05em;text-align:center;line-height:1.2;border:3px solid var(--cream);box-shadow:0 0 0 2px var(--jade-l)}
+    .day-header{display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+    .day-num{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:600;color:var(--jade);letter-spacing:.08em;text-transform:uppercase}
+    .day-date{font-size:.78rem;color:var(--muted);letter-spacing:.05em}
+    .day-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:600;line-height:1.2;color:var(--ink);margin-bottom:1.25rem}
+    .day-body{font-size:.95rem;color:#3a2e20;line-height:1.85}
+    .day-body p{margin-bottom:1rem}
+    .day-body p:last-child{margin-bottom:0}
+    .day-body em{font-style:italic;color:var(--jade)}
+
+    .photo-full{width:100%;border-radius:12px;overflow:hidden;margin:1.75rem 0;box-shadow:0 8px 32px rgba(26,18,9,.15)}
+    .photo-full img{width:100%;height:340px;object-fit:cover;display:block}
+    .photo-full figcaption{background:var(--warm);padding:.6rem 1rem;font-size:.78rem;color:var(--muted);font-style:italic}
+
+    .photo-grid{display:grid;gap:.75rem;margin:1.75rem 0}
+    .photo-grid.cols-2{grid-template-columns:1fr 1fr}
+    .photo-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+    .photo-grid figure{border-radius:10px;overflow:hidden;box-shadow:0 4px 16px rgba(26,18,9,.12)}
+    .photo-grid img{width:100%;height:200px;object-fit:cover;display:block}
+    .photo-grid figcaption{background:var(--warm);padding:.4rem .75rem;font-size:.72rem;color:var(--muted);font-style:italic}
+
+    .highlights{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.5rem 0}
+    .hl-tag{background:rgba(45,106,79,.08);border:1px solid rgba(45,106,79,.2);border-radius:999px;padding:.3rem .9rem;font-size:.78rem;color:var(--jade);letter-spacing:.03em}
+
+    .day-quote{border-left:3px solid var(--gold);padding:1rem 1.5rem;margin:1.5rem 0;background:rgba(201,168,76,.06);border-radius:0 8px 8px 0}
+    .day-quote p{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-style:italic;color:var(--muted);margin:0!important}
+
+    .sub-section{border-top:1px dashed rgba(201,168,76,.35);margin:2rem 0 1.5rem;padding-top:1.75rem}
+    .sub-section-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;font-style:italic;color:var(--jade);margin-bottom:1rem}
+
+    .upcoming-card{background:linear-gradient(135deg,var(--jade) 0%,#1a4030 100%);border-radius:16px;padding:2.5rem;color:#fff;text-align:center}
+    .upcoming-card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;margin-bottom:.5rem;color:var(--gold-l)}
+    .upcoming-card p{font-size:.88rem;opacity:.8}
+    .upcoming-days{display:flex;justify-content:center;gap:.75rem;margin-top:1.5rem;flex-wrap:wrap}
+    .upcoming-day{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:.5rem 1rem;font-size:.78rem;letter-spacing:.05em;opacity:.6}
+
+    footer{text-align:center;padding:3rem 2rem;border-top:1px solid rgba(201,168,76,.15);color:var(--muted);font-size:.8rem;letter-spacing:.05em}
+    footer strong{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;color:var(--jade)}
+
+    @media(max-width:600px){
+      .hero-title{font-size:3.5rem}
+      .section{padding:3.5rem 1.25rem}
+      .photo-grid.cols-3{grid-template-columns:1fr 1fr}
+      .day-card{padding-left:3rem}
+      nav{padding:.6rem 1rem}
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero" id="accueil">
+  <div class="hero-flag">🇻🇳</div>
+  <p class="hero-eyebrow">Carnet de voyage · Mai 2026</p>
+  <h1 class="hero-title">Viêt<em>nam</em></h1>
+  <p class="hero-sub">Terre du Dragon · 5 — 16 mai 2026</p>
+  <div class="hero-authors">
+    <span>Alexandre</span><div class="sep"></div><span>Cédric</span>
+  </div>
+  <div class="hero-scroll">défiler</div>
+</section>
+
+<nav>
+  <div class="nav-brand">Vietnam 2026</div>
+  <ul class="nav-links">
+    <li><a href="#recit">Récit</a></li>
+    <li><a href="#j1">Jour 1</a></li>
+    <li><a href="#j7">Jour 7</a></li>
+  </ul>
+</nav>
+
+<div class="section" id="recit">
+  <p class="section-label">Notre voyage</p>
+  <div class="intro-card">
+    <h2>Un retour aux racines</h2>
+    <p>Ce voyage au Viêtnam est bien plus qu'un séjour touristique — c'est un retour aux sources, une reconnexion avec une terre qui fait partie de nos racines. Pendant dix jours, accompagnés de nos amis proches, nous traversons ce pays magnifique du sud au nord, les yeux grands ouverts et le cœur plein.</p>
+  </div>
+
+  <div class="timeline" id="j1">
+
+    <!-- ═══════════════════════════════════ JOUR 1 ═══════════════════════════════════ -->
+    <article class="day-card">
+      <div class="day-dot">J<br>1</div>
+      <div class="day-header">
+        <span class="day-num">Jour 1</span>
+        <span class="day-date">5 &amp; 6 mai 2026</span>
+      </div>
+      <h2 class="day-title">Le grand départ &amp; l'arrivée à Saïgon</h2>
+
+      <div class="highlights">
+        <span class="hl-tag">✈️ CDG → Ho Chi Minh Ville</span>
+        <span class="hl-tag">🛵 Saïgon colonial</span>
+        <span class="hl-tag">🎨 Atelier de laque</span>
+        <span class="hl-tag">🛥️ Croisière Indochina Queen</span>
+        <span class="hl-tag">🏨 Muong Thanh Luxury 4★</span>
+      </div>
+
+      <div class="day-body">
+
+        <figure class="photo-full">
+          <img src="depart_van.jpg" alt="Le groupe dans le transport au départ de Monts-en-Bessin" />
+          <figcaption>Le groupe au départ de Monts-en-Bessin — sourires malgré la pluie normande 🌧️</figcaption>
+        </figure>
+
+        <p>Ce matin-là, le ciel de Monts-en-Bessin était gris et pluvieux quand nous avons quitté la maison à 7h30. Un transport nous attendait — pas question de conduire — ce qui nous permettait d'être déjà ensemble, soudés, avant même d'avoir décollé. Le groupe était au complet&nbsp;: Mireille, Gilbert, Yohan, Xavier, Cédric et moi.</p>
+
+        <p>Arrivés à Charles-de-Gaulle vers 10h30, le stress s'est installé d'un coup. <em>Xavier</em>, véritable expert de l'aéroport, nous a guidés avec une assurance qui a rassuré tout le monde. Le temps d'une pause avec Cédric, nous en avons rêvé ensemble — cet instant tant attendu, cette destination qui nous appelait depuis si longtemps.</p>
+
+        <figure class="photo-full">
+          <img src="avion.jpg" alt="Alexandre, Cédric et Yohan dans l'avion Air France" />
+          <figcaption>À bord du vol Air France — décollage 13h55, direction Ho Chi Minh Ville ✈️</figcaption>
+        </figure>
+
+        <p>Le 6 mai, à 6h40 heure locale, les roues touchaient enfin le sol vietnamien. Le ciel n'était pas franchement clément, mais dès les premières secondes hors de l'avion, la chaleur et l'humidité nous ont enveloppés d'un seul coup. Pour moi, ce n'était pas simplement l'arrivée dans un nouveau pays. C'était un retour aux sources, une terre de racines.</p>
+
+        <figure class="photo-full">
+          <img src="bus_vietnam.jpg" alt="Alexandre et Cédric dans le bus au Vietnam" />
+          <figcaption>Dans le bus avec Cédric — les yeux grands ouverts sur Saïgon 🛵</figcaption>
+        </figure>
+
+        <p>À la sortie de l'aéroport, <em>Taï</em>, notre guide pour dix jours, nous attendait avec le sourire. Le chauffeur de bus s'est trompé d'adresse — premier couac du voyage, vite rattrapé. Une heure plus tard, nous arrivions enfin au bon hôtel.</p>
+
+        <div class="day-quote">
+          <p>« Des milliers de scooters qui filent dans tous les sens — et pourtant, tout se fait avec une douceur étonnante. »</p>
+        </div>
+
+        <div class="sub-section">
+          <p class="sub-section-title">Les pagodes de Saïgon</p>
+          <div class="photo-grid cols-2">
+            <figure>
+              <img src="pagode_bouddha.jpg" alt="Bouddha dans la pagode de Ngoc Hoang" />
+              <figcaption>Pagode de Ngoc Hoang</figcaption>
+            </figure>
+            <figure>
+              <img src="pagode_autel.jpg" alt="Autel orné d'encens dans la pagode" />
+              <figcaption>Autel orné d'encens</figcaption>
+            </figure>
+          </div>
+          <p>À 10h15, nous partons en excursion dans le Saïgon colonial. La cathédrale Notre-Dame construite en 1880, et la Poste centrale signée <em>Gustave Eiffel</em> impressionnent. Mais c'est à la pagode de Ngoc Hoang que quelque chose se passe vraiment en moi.</p>
+          <div class="day-quote">
+            <p>« Une émotion forte m'a envahie — c'est tellement beau. Les Vietnamiens prient dans un silence habité. Je ressens un bien-être immédiat, comme si j'étais chez moi. »</p>
+          </div>
+          <figure class="photo-full">
+            <img src="pagode_bouddha2.jpg" alt="Bouddha rieur dans le quartier de Cholon" />
+            <figcaption>Le Bouddha rieur dans le quartier chinois de Cholon 🏮</figcaption>
+          </figure>
+          <p>L'après-midi nous emmène dans le quartier chinois de <em>Cholon</em> — les échoppes colorées de la rue des herboristes, le marché de Binh Tay, et la pagode de Thien Hau ornée de figurines en céramiques d'une finesse remarquable.</p>
+        </div>
+
+        <div class="sub-section">
+          <p class="sub-section-title">L'atelier de laque — un savoir-faire ancestral</p>
+          <div class="photo-grid cols-2">
+            <figure>
+              <img src="laque_artisan1.jpg" alt="Artisan travaillant la laque et les coquilles d'œuf" />
+              <figcaption>Incrustation de coquilles d'œuf à la main</figcaption>
+            </figure>
+            <figure>
+              <img src="laque_artisan2.jpg" alt="Démonstration avec le guide Taï" />
+              <figcaption>Taï nous explique les techniques</figcaption>
+            </figure>
+          </div>
+          <p>En fin de journée, Taï nous entraîne dans un atelier de laque — une découverte fascinante. La laque, extraite directement de l'arbre lacquier, est travaillée entièrement à la main selon des techniques ancestrales. Nous découvrons deux méthodes remarquables&nbsp;: la <em>méthode nacrée</em>, avec des fragments de nacre incrustés dans la laque noire, et la <em>méthode à l'œuf</em>, où des éclats de coquille sont posés un par un à la pince pour créer des tableaux texturés d'une beauté rare.</p>
+          <div class="day-quote">
+            <p>« C'était vraiment très beau et impressionnant — un travail réalisé entièrement à la main, avec une patience et une délicatesse qui forcent le respect. »</p>
+          </div>
+        </div>
+
+        <div class="sub-section">
+          <p class="sub-section-title">Dîner-croisière sur l'Indochina Queen</p>
+          <div class="photo-grid cols-2">
+            <figure>
+              <img src="indochina_entree.jpg" alt="Entrée de l'Indochina Queen" />
+              <figcaption>L'Indochina Queen nous accueille</figcaption>
+            </figure>
+            <figure>
+              <img src="indochina_facade.jpg" alt="Façade illuminée" />
+              <figcaption>Saïgon by night depuis le quai</figcaption>
+            </figure>
+          </div>
+          <p>Le soir, le groupe embarque sur l'<em>Indochina Queen</em> pour un dîner-croisière sur le fleuve de Saïgon. Le bateau est magnifiquement décoré&nbsp;; un buffet généreux nous attend — nems, riz, thai rolls, soupes parfumées. Un spectacle de danseuses vient agrémenter le repas avant que le bateau ne s'élance sur le fleuve.</p>
+          <p>De retour à l'hôtel, le <em>Muong Thanh Luxury 4★</em> nous accueille dans de grandes et belles chambres. Nous avons dormi comme des pierres.</p>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- ═══════════════════════════════════ JOUR 7 ═══════════════════════════════════ -->
+    <article class="day-card" id="j7">
+      <div class="day-dot">J<br>7</div>
+      <div class="day-header">
+        <span class="day-num">Jour 7</span>
+        <span class="day-date">11 mai 2026</span>
+      </div>
+      <h2 class="day-title">Route vers Hanoï — la capitale s'éveille</h2>
+
+      <div class="highlights">
+        <span class="hl-tag">🚌 4h de route vers Hanoï</span>
+        <span class="hl-tag">🐟 Chả Cá — spécialité hanoïenne</span>
+        <span class="hl-tag">🏛️ Temple de la Littérature (XIe s.)</span>
+        <span class="hl-tag">🚂 Rue du Train</span>
+        <span class="hl-tag">☕ Egg Coffee</span>
+        <span class="hl-tag">🛺 Cyclo-pousse</span>
+        <span class="hl-tag">🏨 Mejor Indochine Boutique 4★</span>
+      </div>
+
+      <div class="day-body">
+
+        <div class="day-quote">
+          <p>« Avant de dormir, nous avons trouvé direct de l'utilité à la moustiquaire… un cafard s'était invité dans notre chambre. »</p>
+        </div>
+
+        <p>Lever à 6h — presque quatre heures de route nous attendaient pour rejoindre <em>Hanoï</em>, la capitale vietnamienne. Le petit-déjeuner de l'hôtel était l'un des moins complets du séjour, mais suffisant pour un établissement perché en montagne. On ne pouvait pas lui en tenir rigueur.</p>
+
+        <!-- La Chả Cá -->
+        <div class="sub-section">
+          <p class="sub-section-title">La Chả Cá — un festin participatif</p>
+
+          <div class="photo-grid cols-2">
+            <figure>
+              <img src="48775.jpg" alt="Table dressée pour la Chả Cá avec réchaud central et herbes fraîches" />
+              <figcaption>La table dressée — réchaud, aneth, ciboulette, sauces</figcaption>
+            </figure>
+            <figure>
+              <img src="48776.jpg" alt="Accompagnements de la Chả Cá — vermicelles, cacahuètes, herbes" />
+              <figcaption>Les accompagnements : vermicelles, cacahuètes, herbes fraîches</figcaption>
+            </figure>
+          </div>
+
+          <figure class="photo-full">
+            <img src="48773.jpg" alt="Poisson doré à la poêle avec curcuma — Chả Cá" />
+            <figcaption>Le poisson doré au curcuma, saisi à la poêle devant nous 🐟</figcaption>
+          </figure>
+
+          <p>Après le périple en bus, nous sommes arrivés au restaurant où l'on nous a servi la grande spécialité de Hanoï&nbsp;: la <em>Chả Cá Thăng Long</em>. Un plat d'une générosité remarquable — du poisson saisi à la poêle avec du curcuma et de l'aneth, servi avec des vermicelles, des cacahuètes, des herbes fraîches et une sauce de poisson parfumée. Le tout cuit sur un réchaud posé au centre de la table, dans une ambiance conviviale et participative. Nous nous sommes régalés.</p>
+        </div>
+
+        <!-- Temple de la Littérature -->
+        <div class="sub-section">
+          <p class="sub-section-title">Le Temple de la Littérature — mille ans de savoir</p>
+
+          <div class="photo-grid cols-2">
+            <figure>
+              <img src="48777.jpg" alt="Pavillon du Temple de la Littérature reflété dans le bassin" />
+              <figcaption>Le pavillon reflété dans le bassin — ciel bleu parfait</figcaption>
+            </figure>
+            <figure>
+              <img src="48778.jpg" alt="Statue dorée dans le sanctuaire du Temple de la Littérature" />
+              <figcaption>La statue en rouge et or dans le sanctuaire principal</figcaption>
+            </figure>
+          </div>
+
+          <p>Nous sommes ensuite partis visiter le <em>Temple de la Littérature</em>, fondé au XIe siècle — la première université du Vietnam, dédiée à Confucius et aux lettrés. Un lieu d'une sérénité absolue, avec ses cours arborées, ses bassins et ses pavillons aux tuiles vernissées. La photo du porche reflété dans l'eau, sous un ciel d'un bleu parfait, restera gravée longtemps.</p>
+        </div>
+
+        <!-- Rue du Train -->
+        <div class="sub-section">
+          <p class="sub-section-title">La rue du Train — l'escapade hors programme</p>
+
+          <div class="photo-grid cols-2">
+            <figure>
+              <img src="48779.jpg" alt="Train Vietnam Railways arrivant de face dans la ruelle commerçante" />
+              <figcaption>Le train arrive — drapeaux vietnamiens et frisson garanti</figcaption>
+            </figure>
+            <figure>
+              <img src="48780.jpg" alt="Le convoi Vietnam Railways frôlant les boutiques" />
+              <figcaption>Le wagon frôle littéralement les devantures 🚂</figcaption>
+            </figure>
+          </div>
+
+          <p>Ce moment-là, c'était hors programme — et c'est Cédric et moi qui l'avons réclamé. <em>Taï</em> a bien voulu nous y emmener, et on l'en remercie. La fameuse rue du train de Hanoï, mythique sur les réseaux sociaux, où un vrai train de la <em>Vietnam Railways</em> passe à quelques centimètres des terrasses et des boutiques. L'ambiance était électrique — tout le monde sorti de son café pour immortaliser la scène. Et dans la foulée, Cédric a pu goûter à la spécialité locale : l'<em>egg coffee</em> — café recouvert d'une mousse d'œuf onctueuse et sucrée. Il a adoré.</p>
+        </div>
+
+        <!-- Cyclo-pousse -->
+        <div class="sub-section">
+          <p class="sub-section-title">Le cyclo-pousse dans le vieux quartier</p>
+
+          <div class="photo-grid cols-2">
+            <figure>
+              <img src="48781.jpg" alt="Alexandre et Cédric dans un cyclo-pousse dans le vieux Hanoï" />
+              <figcaption>Sous la capote fleurie — sourires garantis 😄</figcaption>
+            </figure>
+            <figure>
+              <img src="48782.jpg" alt="Cyclo-pousse Lam Anh Traser dans les rues de Hanoï" />
+              <figcaption>Lam Anh Traser JSC — dans les rues animées du vieux quartier</figcaption>
+            </figure>
+          </div>
+
+          <p>La promenade en cyclo-pousse dans le vieux quartier était une expérience… mitigée. Sympathique sur le principe, mais un peu décevante à cet endroit précis — trop touristique, trop court, sans vraiment de saveur locale. On y était, on en a profité, et on a gardé le sourire pour les photos. Mais sincèrement, il y avait mieux à faire à Hanoï.</p>
+        </div>
+
+        <!-- Nuit à Hanoï -->
+        <div class="sub-section">
+          <p class="sub-section-title">Hanoï by night — lanternes et vue sur la ville</p>
+
+          <figure class="photo-full">
+            <img src="48783.jpg" alt="Rue de Hanoï by night avec lanternes jaunes dans les arbres et drapeau vietnamien" />
+            <figcaption>Les lanternes de soie jaune illuminent les arbres du vieux Hanoï 🏮</figcaption>
+          </figure>
+
+          <figure class="photo-full">
+            <img src="48774.jpg" alt="Vue panoramique sur Hanoï depuis le bar de l'hôtel Mejor Indochine" />
+            <figcaption>La vue depuis le rooftop bar de l'hôtel — Hanoï s'étend à perte de vue 🥂</figcaption>
+          </figure>
+
+          <p>L'hôtel du soir, le <em>Mejor Indochine Boutique 4★</em>, était encore une belle découverte — très bien décoré, élégant, avec cette atmosphère Indochine que l'on commence à reconnaître. Avant le dîner, une heure de shopping avec les garçons. Puis restaurant à deux pas — simple et bon. Et pour finir, grâce à <em>Yohan</em> qui a insisté, nous sommes montés au bar de l'hôtel. Heureusement&nbsp;! La vue panoramique sur Hanoï by night était absolument magnifique — les avenues illuminées, la ville qui s'étend à l'infini, et un verre à la main. La parfaite conclusion d'une journée intense.</p>
+
+          <div class="day-quote">
+            <p>« Grâce à Yohan, nous y sommes allés — et heureusement, car la vue sur la ville était vraiment magnifique. »</p>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- Carte "à venir" -->
+    <div class="upcoming-card">
+      <h3>La suite du voyage…</h3>
+      <p>Les prochaines journées seront ajoutées au fil du voyage.</p>
+      <div class="upcoming-days">
+        <div class="upcoming-day">Jour 2</div>
+        <div class="upcoming-day">Jour 3</div>
+        <div class="upcoming-day">Jour 4</div>
+        <div class="upcoming-day">Jour 5</div>
+        <div class="upcoming-day">Jour 6</div>
+        <div class="upcoming-day">Jour 8</div>
+        <div class="upcoming-day">Jour 9</div>
+        <div class="upcoming-day">Jour 10</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <strong>Vietnam 2026</strong> · Alexandre &amp; Cédric<br>
+  <span style="opacity:.6;font-size:.75rem;">5 — 16 mai · Terre du Dragon 🐉</span>
+</footer>
+
+</body>
+</html>
